@@ -1,1 +1,3 @@
 # TEST 4
+#include <vector>#include <queue>using namespace std;
+int dp[1000][1000];int Min(int a, int b, int c) { if (a < b) {  if (a < c) return a;  else return c; } else {  if (b < c) return b;  else return c; }}int solution(vector<vector<int>> board){    int answer = 0;    dp[0][0] = 1;    for(vector<int>::size_type i = 0; i < board.size(); ++i){        for(vector<int>::size_type j =0; j<board[0].size(); ++j){            if(board[i][j] == 1){                dp[i][j] = Min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]) + 1;                 if(answer < dp[i][j]) answer = dp[i][j];            }        }            } return answer*answer;}
